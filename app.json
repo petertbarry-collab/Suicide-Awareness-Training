@@ -1,4 +1,3 @@
-
 {
   "expo": {
     "name": "Raven",
@@ -42,7 +41,8 @@
       "typedRoutes": true
     },
     "extra": {
-      "router": {}
+      "router": {},
+      "backendUrl": "https://ge9b88sf4pvcjhqzxh2swdt58rwvyfpk.app.specular.dev"
     }
   }
 }
