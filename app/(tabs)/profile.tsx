@@ -20,6 +20,10 @@ const styles = StyleSheet.create({
     marginTop: 20,
     marginBottom: 30,
     alignItems: 'center',
+    backgroundColor: colors.cardBackground,
+    padding: 30,
+    borderRadius: 20,
+    width: '100%',
   },
   appName: {
     fontSize: 32,
@@ -32,7 +36,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: colors.textSecondary,
     textAlign: 'center',
-    marginBottom: 30,
+    marginBottom: 10,
   },
   section: {
     width: '100%',
@@ -101,7 +105,7 @@ const styles = StyleSheet.create({
 });
 
 export default function ProfileScreen() {
-  console.log('ProfileScreen: Rendering profile with Raven logo');
+  console.log('🦅 ProfileScreen: Rendering profile with Raven logo');
   const colorScheme = useColorScheme();
   const appDeepLink = 'raven-app://';
 
@@ -130,7 +134,7 @@ export default function ProfileScreen() {
         showsVerticalScrollIndicator={false}
       >
         <View style={styles.logoContainer}>
-          <RavenLogo size={140} color={colors.primary} />
+          <RavenLogo size={160} color={colors.primary} />
           <Text style={styles.appName}>Raven</Text>
           <Text style={styles.tagline}>Supporting Mental Health Awareness</Text>
         </View>
