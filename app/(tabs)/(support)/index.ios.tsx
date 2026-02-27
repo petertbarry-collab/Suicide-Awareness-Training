@@ -119,6 +119,27 @@ const supportGroups: SupportGroup[] = [
     website: 'https://www.hugg.ie',
     type: 'hybrid',
   },
+  {
+    id: '10',
+    name: 'Crisis Text Line',
+    organization: 'Crisis Text Line Ireland',
+    description: 'Free, anonymous, 24/7 text service for anyone in crisis. Text HELLO to 50808 to connect with a trained volunteer.',
+    location: 'Nationwide (text service)',
+    meetingTime: 'Available 24/7',
+    contactPhone: '50808',
+    website: 'https://www.crisistextline.ie',
+    type: 'online',
+  },
+  {
+    id: '11',
+    name: 'SpunOut.ie',
+    organization: 'SpunOut.ie',
+    description: 'Ireland\'s youth information website, providing support and information on mental health, well-being, and more for young people.',
+    location: 'Nationwide (online resource)',
+    meetingTime: 'Always available online',
+    website: 'https://www.spunout.ie',
+    type: 'online',
+  },
 ];
 
 export default function SupportGroupsScreen() {
