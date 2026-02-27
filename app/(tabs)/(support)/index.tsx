@@ -106,6 +106,18 @@ const supportGroups: SupportGroup[] = [
     contactPhone: '041 983 4598',
     type: 'in-person',
   },
+  {
+    id: '9',
+    name: 'Hugg Bereavement Support',
+    organization: 'Hugg',
+    description: 'Peer support for anyone bereaved by suicide. Hugg provides a safe, confidential space to share experiences with others who understand.',
+    location: 'Multiple locations nationwide',
+    meetingTime: 'Various times - check website',
+    contactPhone: '01 513 4048',
+    contactEmail: 'info@hugg.ie',
+    website: 'https://www.hugg.ie',
+    type: 'hybrid',
+  },
 ];
 
 export default function SupportGroupsScreen() {
