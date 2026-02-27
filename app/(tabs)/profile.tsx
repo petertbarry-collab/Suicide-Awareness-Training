@@ -101,6 +101,7 @@ const styles = StyleSheet.create({
 });
 
 export default function ProfileScreen() {
+  console.log('ProfileScreen: Rendering profile with Raven logo');
   const colorScheme = useColorScheme();
   const appDeepLink = 'raven-app://';
 

@@ -8,6 +8,8 @@ interface RavenLogoProps {
 }
 
 export default function RavenLogo({ size = 120, color = '#2C5F7C' }: RavenLogoProps) {
+  console.log('RavenLogo (Web) rendering with size:', size, 'color:', color);
+  
   return (
     <View style={[styles.container, { width: size, height: size }]}>
       <svg width={size} height={size} viewBox="0 0 120 120" fill="none">
