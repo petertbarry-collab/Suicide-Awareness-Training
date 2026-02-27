@@ -1,10 +1,10 @@
 
+import { Stack } from "expo-router";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { colors } from "@/styles/commonStyles";
 import React, { useState } from "react";
 import { StyleSheet, View, Text, ScrollView, TouchableOpacity, Linking, Platform } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
-import { Stack } from "expo-router";
 import { IconSymbol } from "@/components/IconSymbol";
-import { colors } from "@/styles/commonStyles";
 
 interface TrainingResource {
   id: string;
@@ -16,24 +16,27 @@ interface TrainingResource {
   cost: string;
   website: string;
   phone?: string;
+  category: 'beginner' | 'advanced' | 'specialized';
 }
 
 export default function HomeScreen() {
   console.log('HomeScreen (iOS): Rendering suicide awareness training list');
   
   const [expandedId, setExpandedId] = useState<string | null>(null);
+  const [selectedFilter, setSelectedFilter] = useState<'all' | 'free' | 'online' | 'beginner'>('all');
 
   const trainingResources: TrainingResource[] = [
     {
       id: '1',
       title: 'safeTALK',
       provider: 'HSE National Office for Suicide Prevention',
-      description: 'A half-day training program that teaches participants to recognize persons with thoughts of suicide and connect them to resources.',
+      description: 'A half-day training program that teaches participants to recognize persons with thoughts of suicide and connect them to resources. Perfect for beginners.',
       duration: '3.5 hours',
       format: 'In-person',
       cost: 'Free',
       website: 'https://www.hse.ie/eng/services/list/4/mental-health-services/nosp/prevention/training/',
-      phone: '01 635 2179'
+      phone: '01 635 2179',
+      category: 'beginner'
     },
     {
       id: '2',
@@ -44,7 +47,8 @@ export default function HomeScreen() {
       format: 'In-person',
       cost: 'Free',
       website: 'https://www.hse.ie/eng/services/list/4/mental-health-services/nosp/prevention/training/',
-      phone: '01 635 2179'
+      phone: '01 635 2179',
+      category: 'advanced'
     },
     {
       id: '3',
@@ -55,7 +59,8 @@ export default function HomeScreen() {
       format: 'In-person & Online',
       cost: 'Varies',
       website: 'https://www.mentalhealthireland.ie/our-work/training/',
-      phone: '01 284 1166'
+      phone: '01 284 1166',
+      category: 'beginner'
     },
     {
       id: '4',
@@ -66,7 +71,8 @@ export default function HomeScreen() {
       format: 'In-person & Online',
       cost: 'Free',
       website: 'https://www.pieta.ie/training/',
-      phone: '01 601 0000'
+      phone: '01 601 0000',
+      category: 'beginner'
     },
     {
       id: '5',
@@ -77,7 +83,8 @@ export default function HomeScreen() {
       format: 'In-person',
       cost: 'Contact for pricing',
       website: 'https://www.connectcounselling.ie/',
-      phone: '1800 477 477'
+      phone: '1800 477 477',
+      category: 'advanced'
     },
     {
       id: '6',
@@ -88,7 +95,8 @@ export default function HomeScreen() {
       format: 'In-person & Online',
       cost: 'Free',
       website: 'https://www.console.ie/training/',
-      phone: '1800 201 890'
+      phone: '1800 201 890',
+      category: 'beginner'
     },
     {
       id: '7',
@@ -99,7 +107,8 @@ export default function HomeScreen() {
       format: 'In-person',
       cost: 'Varies',
       website: 'https://www.jigsaw.ie/training',
-      phone: '01 472 7010'
+      phone: '01 472 7010',
+      category: 'specialized'
     },
     {
       id: '8',
@@ -110,9 +119,18 @@ export default function HomeScreen() {
       format: 'In-person & Online',
       cost: 'Free',
       website: 'https://www.aware.ie/education/training/',
-      phone: '01 661 7211'
+      phone: '01 661 7211',
+      category: 'beginner'
     }
   ];
+
+  const filteredResources = trainingResources.filter(resource => {
+    if (selectedFilter === 'all') return true;
+    if (selectedFilter === 'free') return resource.cost === 'Free';
+    if (selectedFilter === 'online') return resource.format.includes('Online');
+    if (selectedFilter === 'beginner') return resource.category === 'beginner';
+    return true;
+  });
 
   const handleToggleExpand = (id: string) => {
     console.log('User tapped training card:', id);
@@ -133,176 +151,268 @@ export default function HomeScreen() {
     });
   };
 
+  const filterCount = filteredResources.length;
+  const totalCount = trainingResources.length;
+  const filterText = selectedFilter === 'all' ? `${totalCount} Resources` : `${filterCount} of ${totalCount}`;
+
   return (
     <>
       <Stack.Screen 
         options={{
-          headerShown: true,
-          title: 'Suicide Awareness Training',
           headerLargeTitle: true,
-          headerTransparent: false,
-        }} 
+          headerTitle: "Training Resources",
+          headerLargeTitleStyle: {
+            color: colors.text,
+          },
+          headerStyle: {
+            backgroundColor: colors.backgroundAlt,
+          },
+        }}
       />
       <SafeAreaView style={styles.safeArea} edges={['bottom']}>
-        <ScrollView 
-          style={styles.scrollView}
-          contentContainerStyle={styles.scrollContent}
-          showsVerticalScrollIndicator={false}
-        >
-          <View style={styles.infoCard}>
-            <IconSymbol 
-              ios_icon_name="info.circle.fill" 
-              android_material_icon_name="info" 
-              size={20} 
-              color={colors.primary} 
-            />
-            <Text style={styles.infoText}>
-              Tap any training to view details and contact information
-            </Text>
-          </View>
-
-          {trainingResources.map((resource) => {
-            const isExpanded = expandedId === resource.id;
-            
-            return (
-              <TouchableOpacity
-                key={resource.id}
-                style={styles.card}
-                onPress={() => handleToggleExpand(resource.id)}
-                activeOpacity={0.7}
-              >
-                <View style={styles.cardHeader}>
-                  <View style={styles.cardHeaderLeft}>
-                    <IconSymbol 
-                      ios_icon_name="book.fill" 
-                      android_material_icon_name="menu-book" 
-                      size={24} 
-                      color={colors.primary} 
-                    />
-                    <View style={styles.cardHeaderText}>
-                      <Text style={styles.cardTitle}>{resource.title}</Text>
-                      <Text style={styles.cardProvider}>{resource.provider}</Text>
-                    </View>
-                  </View>
+        <View style={styles.container}>
+          <ScrollView 
+            style={styles.scrollView}
+            contentContainerStyle={styles.scrollContent}
+            showsVerticalScrollIndicator={false}
+          >
+            {/* CRISIS SUPPORT - MOVED TO TOP FOR IMMEDIATE ACCESS */}
+            <View style={styles.emergencyCard}>
+              <View style={styles.emergencyHeader}>
+                <IconSymbol 
+                  ios_icon_name="exclamationmark.triangle.fill" 
+                  android_material_icon_name="warning" 
+                  size={24} 
+                  color={colors.accent} 
+                />
+                <Text style={styles.emergencyTitle}>Need Immediate Support?</Text>
+              </View>
+              <Text style={styles.emergencyText}>
+                If you or someone you know is in crisis, help is available 24/7:
+              </Text>
+              <View style={styles.emergencyButtons}>
+                <TouchableOpacity
+                  style={styles.emergencyButton}
+                  onPress={() => handleCallPhone('999', 'Emergency Services')}
+                >
                   <IconSymbol 
-                    ios_icon_name={isExpanded ? "chevron.up" : "chevron.down"} 
-                    android_material_icon_name={isExpanded ? "keyboard-arrow-up" : "keyboard-arrow-down"} 
-                    size={24} 
-                    color={colors.textSecondary} 
+                    ios_icon_name="phone.fill" 
+                    android_material_icon_name="phone" 
+                    size={18} 
+                    color="#FFFFFF" 
                   />
-                </View>
+                  <Text style={styles.emergencyButtonText}>Emergency: 999</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  style={styles.emergencyButton}
+                  onPress={() => handleCallPhone('116123', 'Samaritans')}
+                >
+                  <IconSymbol 
+                    ios_icon_name="phone.fill" 
+                    android_material_icon_name="phone" 
+                    size={18} 
+                    color="#FFFFFF" 
+                  />
+                  <Text style={styles.emergencyButtonText}>Samaritans: 116 123</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  style={styles.emergencyButton}
+                  onPress={() => handleCallPhone('1800247247', 'Pieta House')}
+                >
+                  <IconSymbol 
+                    ios_icon_name="phone.fill" 
+                    android_material_icon_name="phone" 
+                    size={18} 
+                    color="#FFFFFF" 
+                  />
+                  <Text style={styles.emergencyButtonText}>Pieta House: 1800 247 247</Text>
+                </TouchableOpacity>
+              </View>
+            </View>
 
-                {isExpanded && (
-                  <View style={styles.cardContent}>
-                    <Text style={styles.description}>{resource.description}</Text>
-                    
-                    <View style={styles.detailsGrid}>
-                      <View style={styles.detailItem}>
-                        <IconSymbol 
-                          ios_icon_name="clock.fill" 
-                          android_material_icon_name="schedule" 
-                          size={16} 
-                          color={colors.textSecondary} 
-                        />
-                        <Text style={styles.detailLabel}>Duration:</Text>
-                        <Text style={styles.detailValue}>{resource.duration}</Text>
-                      </View>
+            {/* SUPPORTIVE MESSAGE */}
+            <View style={styles.supportCard}>
+              <IconSymbol 
+                ios_icon_name="heart.circle.fill" 
+                android_material_icon_name="favorite" 
+                size={20} 
+                color={colors.primary} 
+              />
+              <Text style={styles.supportText}>
+                Thank you for taking steps to learn about suicide prevention. Your willingness to help can save lives.
+              </Text>
+            </View>
 
-                      <View style={styles.detailItem}>
-                        <IconSymbol 
-                          ios_icon_name="person.2.fill" 
-                          android_material_icon_name="group" 
-                          size={16} 
-                          color={colors.textSecondary} 
-                        />
-                        <Text style={styles.detailLabel}>Format:</Text>
-                        <Text style={styles.detailValue}>{resource.format}</Text>
-                      </View>
+            {/* FILTER SECTION */}
+            <View style={styles.filterSection}>
+              <Text style={styles.filterTitle}>Filter Training ({filterText})</Text>
+              <ScrollView 
+                horizontal 
+                showsHorizontalScrollIndicator={false}
+                contentContainerStyle={styles.filterScroll}
+              >
+                <TouchableOpacity
+                  style={[styles.filterChip, selectedFilter === 'all' && styles.filterChipActive]}
+                  onPress={() => setSelectedFilter('all')}
+                >
+                  <Text style={[styles.filterChipText, selectedFilter === 'all' && styles.filterChipTextActive]}>
+                    All
+                  </Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  style={[styles.filterChip, selectedFilter === 'beginner' && styles.filterChipActive]}
+                  onPress={() => setSelectedFilter('beginner')}
+                >
+                  <Text style={[styles.filterChipText, selectedFilter === 'beginner' && styles.filterChipTextActive]}>
+                    Beginner Friendly
+                  </Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  style={[styles.filterChip, selectedFilter === 'free' && styles.filterChipActive]}
+                  onPress={() => setSelectedFilter('free')}
+                >
+                  <Text style={[styles.filterChipText, selectedFilter === 'free' && styles.filterChipTextActive]}>
+                    Free
+                  </Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  style={[styles.filterChip, selectedFilter === 'online' && styles.filterChipActive]}
+                  onPress={() => setSelectedFilter('online')}
+                >
+                  <Text style={[styles.filterChipText, selectedFilter === 'online' && styles.filterChipTextActive]}>
+                    Online Available
+                  </Text>
+                </TouchableOpacity>
+              </ScrollView>
+            </View>
 
-                      <View style={styles.detailItem}>
-                        <IconSymbol 
-                          ios_icon_name="dollarsign.circle.fill" 
-                          android_material_icon_name="attach-money" 
-                          size={16} 
-                          color={colors.textSecondary} 
-                        />
-                        <Text style={styles.detailLabel}>Cost:</Text>
-                        <Text style={styles.detailValue}>{resource.cost}</Text>
+            {/* TRAINING RESOURCES */}
+            {filteredResources.map((resource) => {
+              const isExpanded = expandedId === resource.id;
+              
+              return (
+                <TouchableOpacity
+                  key={resource.id}
+                  style={styles.card}
+                  onPress={() => handleToggleExpand(resource.id)}
+                  activeOpacity={0.7}
+                >
+                  <View style={styles.cardHeader}>
+                    <View style={styles.cardHeaderLeft}>
+                      <IconSymbol 
+                        ios_icon_name="book.fill" 
+                        android_material_icon_name="menu-book" 
+                        size={24} 
+                        color={colors.primary} 
+                      />
+                      <View style={styles.cardHeaderText}>
+                        <Text style={styles.cardTitle}>{resource.title}</Text>
+                        <Text style={styles.cardProvider}>{resource.provider}</Text>
                       </View>
                     </View>
+                    <IconSymbol 
+                      ios_icon_name={isExpanded ? "chevron.up" : "chevron.down"} 
+                      android_material_icon_name={isExpanded ? "keyboard-arrow-up" : "keyboard-arrow-down"} 
+                      size={24} 
+                      color={colors.textSecondary} 
+                    />
+                  </View>
 
-                    <View style={styles.contactButtons}>
-                      <TouchableOpacity
-                        style={styles.contactButton}
-                        onPress={() => handleOpenWebsite(resource.website, resource.title)}
-                      >
-                        <IconSymbol 
-                          ios_icon_name="globe" 
-                          android_material_icon_name="language" 
-                          size={18} 
-                          color={colors.primary} 
-                        />
-                        <Text style={styles.contactButtonText}>Visit Website</Text>
-                      </TouchableOpacity>
+                  {isExpanded && (
+                    <View style={styles.cardContent}>
+                      <Text style={styles.description}>{resource.description}</Text>
+                      
+                      <View style={styles.detailsGrid}>
+                        <View style={styles.detailItem}>
+                          <IconSymbol 
+                            ios_icon_name="clock.fill" 
+                            android_material_icon_name="schedule" 
+                            size={16} 
+                            color={colors.textSecondary} 
+                          />
+                          <Text style={styles.detailLabel}>Duration:</Text>
+                          <Text style={styles.detailValue}>{resource.duration}</Text>
+                        </View>
 
-                      {resource.phone && (
+                        <View style={styles.detailItem}>
+                          <IconSymbol 
+                            ios_icon_name="person.2.fill" 
+                            android_material_icon_name="group" 
+                            size={16} 
+                            color={colors.textSecondary} 
+                          />
+                          <Text style={styles.detailLabel}>Format:</Text>
+                          <Text style={styles.detailValue}>{resource.format}</Text>
+                        </View>
+
+                        <View style={styles.detailItem}>
+                          <IconSymbol 
+                            ios_icon_name="dollarsign.circle.fill" 
+                            android_material_icon_name="attach-money" 
+                            size={16} 
+                            color={colors.textSecondary} 
+                          />
+                          <Text style={styles.detailLabel}>Cost:</Text>
+                          <Text style={styles.detailValue}>{resource.cost}</Text>
+                        </View>
+                      </View>
+
+                      <View style={styles.contactButtons}>
                         <TouchableOpacity
                           style={styles.contactButton}
-                          onPress={() => handleCallPhone(resource.phone!, resource.title)}
+                          onPress={() => handleOpenWebsite(resource.website, resource.title)}
                         >
                           <IconSymbol 
-                            ios_icon_name="phone.fill" 
-                            android_material_icon_name="phone" 
+                            ios_icon_name="globe" 
+                            android_material_icon_name="language" 
                             size={18} 
                             color={colors.primary} 
                           />
-                          <Text style={styles.contactButtonText}>{resource.phone}</Text>
+                          <Text style={styles.contactButtonText}>Visit Website</Text>
                         </TouchableOpacity>
-                      )}
+
+                        {resource.phone && (
+                          <TouchableOpacity
+                            style={styles.contactButton}
+                            onPress={() => handleCallPhone(resource.phone!, resource.title)}
+                          >
+                            <IconSymbol 
+                              ios_icon_name="phone.fill" 
+                              android_material_icon_name="phone" 
+                              size={18} 
+                              color={colors.primary} 
+                            />
+                            <Text style={styles.contactButtonText}>{resource.phone}</Text>
+                          </TouchableOpacity>
+                        )}
+                      </View>
                     </View>
-                  </View>
-                )}
-              </TouchableOpacity>
-            );
-          })}
+                  )}
+                </TouchableOpacity>
+              );
+            })}
 
-          <View style={styles.emergencyCard}>
-            <IconSymbol 
-              ios_icon_name="exclamationmark.triangle.fill" 
-              android_material_icon_name="warning" 
-              size={24} 
-              color={colors.accent} 
-            />
-            <Text style={styles.emergencyTitle}>In Crisis?</Text>
-            <Text style={styles.emergencyText}>
-              If you or someone you know is in immediate danger, please contact emergency services or a crisis helpline:
-            </Text>
-            <TouchableOpacity
-              style={styles.emergencyButton}
-              onPress={() => handleCallPhone('999', 'Emergency Services')}
-            >
-              <Text style={styles.emergencyButtonText}>Emergency: 999</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.emergencyButton}
-              onPress={() => handleCallPhone('116123', 'Samaritans')}
-            >
-              <Text style={styles.emergencyButtonText}>Samaritans: 116 123</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.emergencyButton}
-              onPress={() => handleCallPhone('1800247247', 'Pieta House')}
-            >
-              <Text style={styles.emergencyButtonText}>Pieta House: 1800 247 247</Text>
-            </TouchableOpacity>
-          </View>
+            {/* SELF-CARE REMINDER */}
+            <View style={styles.selfCareCard}>
+              <IconSymbol 
+                ios_icon_name="leaf.fill" 
+                android_material_icon_name="eco" 
+                size={20} 
+                color={colors.success} 
+              />
+              <Text style={styles.selfCareTitle}>Remember to Care for Yourself</Text>
+              <Text style={styles.selfCareText}>
+                Learning about suicide prevention can be emotionally challenging. Take breaks, practice self-care, and reach out for support when needed.
+              </Text>
+            </View>
 
-          <View style={styles.footer}>
-            <Text style={styles.footerText}>
-              This information is provided for educational purposes. Please verify details directly with providers.
-            </Text>
-          </View>
-        </ScrollView>
+            <View style={styles.footer}>
+              <Text style={styles.footerText}>
+                This information is provided for educational purposes. Please verify details directly with providers.
+              </Text>
+            </View>
+          </ScrollView>
+        </View>
       </SafeAreaView>
     </>
   );
@@ -313,6 +423,10 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: colors.background,
   },
+  container: {
+    flex: 1,
+    backgroundColor: colors.background,
+  },
   scrollView: {
     flex: 1,
   },
@@ -320,20 +434,99 @@ const styles = StyleSheet.create({
     padding: 16,
     paddingBottom: 100,
   },
-  infoCard: {
+  emergencyCard: {
+    backgroundColor: '#FFF3E0',
+    borderRadius: 12,
+    padding: 20,
+    marginBottom: 16,
+    borderWidth: 2,
+    borderColor: colors.accent,
+  },
+  emergencyHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 8,
+    gap: 8,
+  },
+  emergencyTitle: {
+    fontSize: 18,
+    fontWeight: '700',
+    color: colors.text,
+  },
+  emergencyText: {
+    fontSize: 14,
+    color: colors.text,
+    textAlign: 'center',
+    lineHeight: 20,
+    marginBottom: 16,
+  },
+  emergencyButtons: {
+    gap: 8,
+  },
+  emergencyButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: colors.accent,
+    paddingVertical: 12,
+    paddingHorizontal: 24,
+    borderRadius: 8,
+    gap: 8,
+  },
+  emergencyButtonText: {
+    fontSize: 15,
+    fontWeight: '600',
+    color: '#FFFFFF',
+  },
+  supportCard: {
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: colors.highlight,
-    padding: 12,
-    borderRadius: 8,
+    padding: 16,
+    borderRadius: 12,
     marginBottom: 16,
+    gap: 12,
+    borderLeftWidth: 4,
+    borderLeftColor: colors.primary,
+  },
+  supportText: {
+    flex: 1,
+    fontSize: 14,
+    color: colors.text,
+    lineHeight: 20,
+  },
+  filterSection: {
+    marginBottom: 16,
+  },
+  filterTitle: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: colors.text,
+    marginBottom: 12,
+  },
+  filterScroll: {
     gap: 8,
   },
-  infoText: {
-    flex: 1,
-    fontSize: 13,
+  filterChip: {
+    paddingHorizontal: 16,
+    paddingVertical: 8,
+    borderRadius: 20,
+    backgroundColor: colors.backgroundAlt,
+    borderWidth: 1,
+    borderColor: colors.border,
+  },
+  filterChipActive: {
+    backgroundColor: colors.primary,
+    borderColor: colors.primary,
+  },
+  filterChipText: {
+    fontSize: 14,
+    fontWeight: '500',
     color: colors.text,
-    lineHeight: 18,
+  },
+  filterChipTextActive: {
+    color: '#FFFFFF',
   },
   card: {
     backgroundColor: colors.card,
@@ -416,43 +609,29 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     color: colors.primary,
   },
-  emergencyCard: {
-    backgroundColor: '#FFF3E0',
+  selfCareCard: {
+    backgroundColor: '#E8F5E9',
     borderRadius: 12,
-    padding: 20,
+    padding: 16,
     marginTop: 8,
     marginBottom: 16,
     alignItems: 'center',
-    borderWidth: 1,
-    borderColor: colors.accent,
+    borderLeftWidth: 4,
+    borderLeftColor: colors.success,
   },
-  emergencyTitle: {
-    fontSize: 18,
-    fontWeight: '700',
+  selfCareTitle: {
+    fontSize: 16,
+    fontWeight: '600',
     color: colors.text,
     marginTop: 8,
     marginBottom: 8,
+    textAlign: 'center',
   },
-  emergencyText: {
-    fontSize: 14,
+  selfCareText: {
+    fontSize: 13,
     color: colors.text,
     textAlign: 'center',
-    lineHeight: 20,
-    marginBottom: 16,
-  },
-  emergencyButton: {
-    backgroundColor: colors.accent,
-    paddingVertical: 12,
-    paddingHorizontal: 24,
-    borderRadius: 8,
-    marginBottom: 8,
-    width: '100%',
-    alignItems: 'center',
-  },
-  emergencyButtonText: {
-    fontSize: 15,
-    fontWeight: '600',
-    color: '#FFFFFF',
+    lineHeight: 19,
   },
   footer: {
     padding: 16,
