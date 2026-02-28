@@ -1,12 +1,11 @@
 
 import { Stack } from "expo-router";
-import { View, Text, StyleSheet, ScrollView, useColorScheme, Share, TouchableOpacity } from "react-native";
+import { View, Text, StyleSheet, ScrollView, useColorScheme, Share, TouchableOpacity, Image } from "react-native";
 import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { colors } from "@/styles/commonStyles";
 import QRCode from 'react-native-qrcode-svg';
 import { IconSymbol } from "@/components/IconSymbol";
-import RavenLogo from "@/components/RavenLogo";
 
 const styles = StyleSheet.create({
   container: {
@@ -25,6 +24,11 @@ const styles = StyleSheet.create({
     padding: 30,
     borderRadius: 20,
     width: '100%',
+  },
+  appIcon: {
+    width: 160,
+    height: 160,
+    borderRadius: 40,
   },
   appName: {
     fontSize: 32,
@@ -103,10 +107,16 @@ const styles = StyleSheet.create({
     marginTop: 12,
     fontStyle: 'italic',
   },
+  qrAppIcon: {
+    width: 60,
+    height: 60,
+    borderRadius: 15,
+    marginBottom: 12,
+  },
 });
 
 export default function ProfileScreen() {
-  console.log('🦅 ProfileScreen (iOS): Rendering profile with Raven logo');
+  console.log('🦅 ProfileScreen (iOS): Rendering profile with app icon');
   const colorScheme = useColorScheme();
   const appDeepLink = 'raven-app://';
 
@@ -143,7 +153,11 @@ export default function ProfileScreen() {
           showsVerticalScrollIndicator={false}
         >
           <View style={styles.logoContainer}>
-            <RavenLogo size={160} color={colors.primary} />
+            <Image 
+              source={require('@/assets/images/app-icon-rcb.png')}
+              style={styles.appIcon}
+              resizeMode="contain"
+            />
             <Text style={styles.appName}>Raven</Text>
             <Text style={styles.tagline}>Supporting Mental Health Awareness</Text>
           </View>
@@ -160,7 +174,11 @@ export default function ProfileScreen() {
           <View style={styles.section}>
             <Text style={styles.sectionTitle}>Share the App</Text>
             <View style={styles.qrContainer}>
-              <RavenLogo size={60} color={colors.primary} />
+              <Image 
+                source={require('@/assets/images/app-icon-rcb.png')}
+                style={styles.qrAppIcon}
+                resizeMode="contain"
+              />
               <QRCode
                 value={appDeepLink}
                 size={200}
