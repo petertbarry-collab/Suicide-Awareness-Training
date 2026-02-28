@@ -4,11 +4,11 @@
     "slug": "Raven",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/app-icon-mhi.png",
+    "icon": "./assets/images/app-icon-rcb.png",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "splash": {
-      "image": "./assets/images/app-icon-mhi.png",
+      "image": "./assets/images/app-icon-rcb.png",
       "resizeMode": "contain",
       "backgroundColor": "#000000"
     },
@@ -21,7 +21,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/app-icon-mhi.png",
+        "foregroundImage": "./assets/images/app-icon-rcb.png",
         "backgroundColor": "#000000"
       },
       "edgeToEdgeEnabled": true,
