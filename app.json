@@ -1,14 +1,14 @@
 {
   "expo": {
-    "name": "i-want-to-create-an-",
-    "slug": "i-want-to-create-an-",
+    "name": "Raven",
+    "slug": "Raven",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/app-icon-fvp.png",
+    "icon": "./assets/images/app-icon-mhi.png",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "splash": {
-      "image": "./assets/images/app-icon-fvp.png",
+      "image": "./assets/images/app-icon-mhi.png",
       "resizeMode": "contain",
       "backgroundColor": "#000000"
     },
@@ -21,7 +21,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/app-icon-fvp.png",
+        "foregroundImage": "./assets/images/app-icon-mhi.png",
         "backgroundColor": "#000000"
       },
       "edgeToEdgeEnabled": true,
@@ -36,7 +36,7 @@
       "expo-router",
       "expo-web-browser"
     ],
-    "scheme": "i-want-to-create-an-",
+    "scheme": "Raven",
     "experiments": {
       "typedRoutes": true
     },
