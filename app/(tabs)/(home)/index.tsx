@@ -4,6 +4,7 @@ import { StyleSheet, View, Text, ScrollView, TouchableOpacity, Linking, Platform
 import { SafeAreaView } from "react-native-safe-area-context";
 import { IconSymbol } from "@/components/IconSymbol";
 import { colors } from "@/styles/commonStyles";
+import RavenLogo from "@/components/RavenLogo";
 
 interface TrainingResource {
   id: string;
@@ -158,12 +159,7 @@ export default function HomeScreen() {
     <SafeAreaView style={styles.safeArea} edges={['top']}>
       <View style={styles.container}>
         <View style={styles.header}>
-          <IconSymbol 
-            ios_icon_name="heart.fill" 
-            android_material_icon_name="favorite" 
-            size={32} 
-            color={colors.primary} 
-          />
+          <RavenLogo size={80} color={colors.primary} />
           <Text style={styles.title}>Suicide Awareness Training</Text>
           <Text style={styles.subtitle}>Available Resources in Ireland</Text>
         </View>
@@ -436,7 +432,7 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: '700',
     color: colors.text,
-    marginTop: 8,
+    marginTop: 12,
     textAlign: 'center',
   },
   subtitle: {
