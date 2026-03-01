@@ -158,18 +158,19 @@ export default function HomeScreen() {
   return (
     <SafeAreaView style={styles.safeArea} edges={['top']}>
       <View style={styles.container}>
-        <View style={styles.header}>
-          <RavenLogo size={80} color={colors.primary} />
-          <Text style={styles.title}>Suicide Awareness Training</Text>
-          <Text style={styles.subtitle}>Available Resources in Ireland</Text>
-        </View>
-
         <ScrollView 
           style={styles.scrollView}
           contentContainerStyle={styles.scrollContent}
           showsVerticalScrollIndicator={false}
         >
-          {/* CRISIS SUPPORT - MOVED TO TOP FOR IMMEDIATE ACCESS */}
+          {/* RAVEN LOGO AT TOP */}
+          <View style={styles.logoContainer}>
+            <RavenLogo size={100} color={colors.primary} />
+            <Text style={styles.appTitle}>Raven</Text>
+            <Text style={styles.appSubtitle}>Suicide Awareness Training Resources</Text>
+          </View>
+
+          {/* CRISIS SUPPORT - IMMEDIATE ACCESS */}
           <View style={styles.emergencyCard}>
             <View style={styles.emergencyHeader}>
               <IconSymbol 
@@ -419,34 +420,32 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: colors.background,
   },
-  header: {
-    alignItems: 'center',
-    paddingTop: Platform.OS === 'android' ? 24 : 16,
-    paddingBottom: 16,
-    paddingHorizontal: 20,
-    backgroundColor: colors.backgroundAlt,
-    borderBottomWidth: 1,
-    borderBottomColor: colors.border,
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: '700',
-    color: colors.text,
-    marginTop: 12,
-    textAlign: 'center',
-  },
-  subtitle: {
-    fontSize: 14,
-    color: colors.textSecondary,
-    marginTop: 4,
-    textAlign: 'center',
-  },
   scrollView: {
     flex: 1,
   },
   scrollContent: {
     padding: 16,
     paddingBottom: 100,
+  },
+  logoContainer: {
+    alignItems: 'center',
+    paddingVertical: 24,
+    paddingTop: Platform.OS === 'android' ? 48 : 24,
+    marginBottom: 8,
+  },
+  appTitle: {
+    fontSize: 32,
+    fontWeight: '700',
+    color: colors.text,
+    marginTop: 16,
+    textAlign: 'center',
+  },
+  appSubtitle: {
+    fontSize: 16,
+    color: colors.textSecondary,
+    marginTop: 8,
+    textAlign: 'center',
+    paddingHorizontal: 20,
   },
   emergencyCard: {
     backgroundColor: '#FFF3E0',

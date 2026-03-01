@@ -3,7 +3,7 @@ import { Stack } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { colors } from "@/styles/commonStyles";
 import React, { useState } from "react";
-import { StyleSheet, View, Text, ScrollView, TouchableOpacity, Linking, Platform } from "react-native";
+import { StyleSheet, View, Text, ScrollView, TouchableOpacity, Linking } from "react-native";
 import { IconSymbol } from "@/components/IconSymbol";
 import RavenLogo from "@/components/RavenLogo";
 
@@ -161,9 +161,10 @@ export default function HomeScreen() {
       <Stack.Screen 
         options={{
           headerLargeTitle: true,
-          headerTitle: "Training Resources",
+          headerTitle: "Raven",
           headerLargeTitleStyle: {
             color: colors.text,
+            fontWeight: '700',
           },
           headerStyle: {
             backgroundColor: colors.backgroundAlt,
@@ -179,10 +180,11 @@ export default function HomeScreen() {
           >
             {/* RAVEN LOGO AT TOP */}
             <View style={styles.logoContainer}>
-              <RavenLogo size={100} color={colors.primary} />
+              <RavenLogo size={120} color={colors.primary} />
+              <Text style={styles.appSubtitle}>Suicide Awareness Training Resources</Text>
             </View>
 
-            {/* CRISIS SUPPORT - MOVED TO TOP FOR IMMEDIATE ACCESS */}
+            {/* CRISIS SUPPORT - IMMEDIATE ACCESS */}
             <View style={styles.emergencyCard}>
               <View style={styles.emergencyHeader}>
                 <IconSymbol 
@@ -442,7 +444,15 @@ const styles = StyleSheet.create({
   },
   logoContainer: {
     alignItems: 'center',
-    paddingVertical: 20,
+    paddingVertical: 24,
+    marginBottom: 8,
+  },
+  appSubtitle: {
+    fontSize: 16,
+    color: colors.textSecondary,
+    marginTop: 12,
+    textAlign: 'center',
+    paddingHorizontal: 20,
   },
   emergencyCard: {
     backgroundColor: '#FFF3E0',
