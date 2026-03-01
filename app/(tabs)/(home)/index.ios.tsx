@@ -5,7 +5,6 @@ import { colors } from "@/styles/commonStyles";
 import React, { useState } from "react";
 import { StyleSheet, View, Text, ScrollView, TouchableOpacity, Linking } from "react-native";
 import { IconSymbol } from "@/components/IconSymbol";
-import RavenLogo from "@/components/RavenLogo";
 
 interface TrainingResource {
   id: string;
@@ -178,9 +177,8 @@ export default function HomeScreen() {
             contentContainerStyle={styles.scrollContent}
             showsVerticalScrollIndicator={false}
           >
-            {/* RAVEN LOGO AT TOP */}
-            <View style={styles.logoContainer}>
-              <RavenLogo size={120} color={colors.primary} />
+            {/* HEADER */}
+            <View style={styles.headerContainer}>
               <Text style={styles.appSubtitle}>Suicide Awareness Training Resources</Text>
             </View>
 
@@ -442,15 +440,14 @@ const styles = StyleSheet.create({
     padding: 16,
     paddingBottom: 100,
   },
-  logoContainer: {
+  headerContainer: {
     alignItems: 'center',
-    paddingVertical: 24,
+    paddingVertical: 16,
     marginBottom: 8,
   },
   appSubtitle: {
     fontSize: 16,
     color: colors.textSecondary,
-    marginTop: 12,
     textAlign: 'center',
     paddingHorizontal: 20,
   },
