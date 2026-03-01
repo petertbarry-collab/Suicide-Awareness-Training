@@ -3,7 +3,7 @@ import { Stack } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { colors } from "@/styles/commonStyles";
 import React, { useState } from "react";
-import { StyleSheet, View, Text, ScrollView, TouchableOpacity, Linking } from "react-native";
+import { StyleSheet, View, Text, ScrollView, TouchableOpacity, Linking, Image } from "react-native";
 import { IconSymbol } from "@/components/IconSymbol";
 
 interface TrainingResource {
@@ -20,7 +20,7 @@ interface TrainingResource {
 }
 
 export default function HomeScreen() {
-  console.log('HomeScreen (iOS): Rendering suicide awareness training list');
+  console.log('HomeScreen (iOS): Rendering suicide awareness training list with app logo');
   
   const [expandedId, setExpandedId] = useState<string | null>(null);
   const [selectedFilter, setSelectedFilter] = useState<'all' | 'free' | 'online' | 'beginner'>('all');
@@ -177,8 +177,13 @@ export default function HomeScreen() {
             contentContainerStyle={styles.scrollContent}
             showsVerticalScrollIndicator={false}
           >
-            {/* HEADER */}
+            {/* HEADER WITH LOGO */}
             <View style={styles.headerContainer}>
+              <Image 
+                source={require('@/assets/images/app-icon-rcb.png')}
+                style={styles.appLogo}
+                resizeMode="contain"
+              />
               <Text style={styles.appSubtitle}>Suicide Awareness Training Resources</Text>
             </View>
 
@@ -444,6 +449,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingVertical: 16,
     marginBottom: 8,
+  },
+  appLogo: {
+    width: 80,
+    height: 80,
+    borderRadius: 20,
+    marginBottom: 12,
   },
   appSubtitle: {
     fontSize: 16,
