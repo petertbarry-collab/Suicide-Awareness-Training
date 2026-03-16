@@ -16,6 +16,10 @@ export default function TabLayout() {
         <Label>Support</Label>
         <Icon sf={{ default: 'person.3', selected: 'person.3.fill' }} drawable="group" />
       </NativeTabs.Trigger>
+      <NativeTabs.Trigger name="about">
+        <Label>About</Label>
+        <Icon sf={{ default: 'info.circle', selected: 'info.circle.fill' }} drawable="info" />
+      </NativeTabs.Trigger>
     </NativeTabs>
   );
 }
