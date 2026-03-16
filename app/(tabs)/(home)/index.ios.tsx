@@ -7,7 +7,7 @@ import { StyleSheet, View, Text, ScrollView, TouchableOpacity, Linking, Image } 
 import { IconSymbol } from "@/components/IconSymbol";
 
 interface TrainingResource {
-  id: string;
+  id: number;
   title: string;
   provider: string;
   description: string;
@@ -22,68 +22,63 @@ interface TrainingResource {
 export default function HomeScreen() {
   console.log('HomeScreen (iOS): Rendering suicide awareness training list with app logo');
   
-  const [expandedId, setExpandedId] = useState<string | null>(null);
+  const [expandedId, setExpandedId] = useState<number | null>(null);
   const [selectedFilter, setSelectedFilter] = useState<'all' | 'free' | 'online'>('all');
 
   const trainingResources: TrainingResource[] = [
     {
-      id: '1',
+      id: 1,
+      title: "Let's Talk About Suicide",
+      provider: 'HSE National Office for Suicide Prevention (NOSP)',
+      description: 'An introductory awareness programme that helps community members understand suicide, recognise warning signs, and know how to respond and seek help.',
+      duration: '2 hours',
+      format: 'In-person & Online',
+      cost: 'Free',
+      website: 'https://www.hse.ie/nosp',
+      category: 'beginner'
+    },
+    {
+      id: 2,
+      title: 'eSuicideTALK',
+      provider: 'LivingWorks',
+      description: 'An online awareness session that explores attitudes around suicide and helps participants understand how to support someone who may be at risk.',
+      duration: '20 minutes',
+      format: 'Online',
+      cost: 'Free',
+      website: 'https://www.livingworks.net/esuicidetalk',
+      category: 'beginner'
+    },
+    {
+      id: 3,
       title: 'safeTALK',
-      provider: 'HSE National Office for Suicide Prevention',
-      description: 'A half-day training program that teaches participants to recognize persons with thoughts of suicide and connect them to resources. Perfect for beginners.',
+      provider: 'LivingWorks',
+      description: 'A half-day training that prepares anyone to become a suicide-alert helper. Participants learn to recognise and engage with persons who may be having thoughts of suicide.',
       duration: '3.5 hours',
       format: 'In-person',
       cost: 'Free',
-      website: 'https://www.hse.ie/eng/services/list/4/mental-health-services/nosp/prevention/training/',
-      phone: '01 635 2179',
+      website: 'https://www.livingworks.net/safetalk',
       category: 'beginner'
     },
     {
-      id: '3',
-      title: 'Mental Health First Aid',
-      provider: 'Mental Health Ireland',
-      description: 'Teaches how to identify, understand and respond to signs of mental health and substance use challenges.',
-      duration: '12 hours (various formats)',
-      format: 'In-person & Online',
-      cost: 'Varies',
-      website: 'https://www.mentalhealthireland.ie/our-work/training/',
-      phone: '01 284 1166',
-      category: 'beginner'
-    },
-    {
-      id: '4',
-      title: 'Suicide Awareness Training',
-      provider: 'Pieta House',
-      description: 'Training for individuals and organizations on recognizing warning signs and how to respond appropriately.',
-      duration: '2-3 hours',
+      id: 4,
+      title: 'Introduction to Self-Harm',
+      provider: 'HSE National Office for Suicide Prevention (NOSP)',
+      description: 'An introductory programme providing community members with a basic understanding of self-harm, why it occurs, and how to respond supportively.',
+      duration: '2 hours',
       format: 'In-person & Online',
       cost: 'Free',
-      website: 'https://www.pieta.ie/training/',
-      phone: '01 601 0000',
+      website: 'https://www.hse.ie/nosp',
       category: 'beginner'
     },
     {
-      id: '6',
-      title: 'Suicide Prevention Training',
-      provider: 'Console',
-      description: 'Training for professionals and community members on suicide prevention, intervention and postvention.',
-      duration: 'Various',
-      format: 'In-person & Online',
-      cost: 'Free',
-      website: 'https://www.console.ie/training/',
-      phone: '1800 201 890',
-      category: 'beginner'
-    },
-    {
-      id: '8',
-      title: 'Suicide Prevention & Intervention',
-      provider: 'Aware',
-      description: 'Training on understanding suicide, risk factors, and practical intervention strategies.',
+      id: 5,
+      title: 'Understanding Self-Harm',
+      provider: 'HSE National Office for Suicide Prevention (NOSP)',
+      description: 'Builds on introductory knowledge to give a deeper understanding of self-harm behaviours, supporting individuals and families affected.',
       duration: '3 hours',
       format: 'In-person & Online',
       cost: 'Free',
-      website: 'https://www.aware.ie/education/training/',
-      phone: '01 661 7211',
+      website: 'https://www.hse.ie/nosp',
       category: 'beginner'
     }
   ];
