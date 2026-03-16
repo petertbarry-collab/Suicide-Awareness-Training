@@ -30,6 +30,10 @@ export default function AboutScreen() {
           <Text style={styles.body}>
             Why Raven? Nicky had a tattoo of a Raven on his forearm which he was very proud of. In many cultures the Raven is a symbol of the Watcher or Gatekeeper and is a perfect symbol for what we are hoping to achieve here.
           </Text>
+          <View style={styles.paragraphSpacer} />
+          <Text style={styles.body}>
+            The more people who undertake the training, the more Gatekeepers in our community who are trained to be more aware of what to look out for, say and do to support someone thinking of suicide or engaging in self-harm.
+          </Text>
         </View>
       </Animated.View>
     </SafeAreaView>
