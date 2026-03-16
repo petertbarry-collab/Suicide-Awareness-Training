@@ -143,6 +143,7 @@ export default function HomeScreen() {
                 resizeMode="contain"
               />
               <Text style={styles.appSubtitle}>Suicide Awareness Training Resources</Text>
+              <Text style={styles.introText}>These are suicide alertness raising programmes that prepare participants to know how to help someone with thoughts of suicide. They also help to improve awareness of and sensitivities to self-harm.</Text>
             </View>
 
             {/* CRISIS SUPPORT - IMMEDIATE ACCESS */}
@@ -411,6 +412,14 @@ const styles = StyleSheet.create({
     color: colors.textSecondary,
     textAlign: 'center',
     paddingHorizontal: 20,
+  },
+  introText: {
+    fontSize: 14,
+    color: colors.textSecondary,
+    marginTop: 12,
+    textAlign: 'center',
+    paddingHorizontal: 16,
+    lineHeight: 21,
   },
   emergencyCard: {
     backgroundColor: '#FFF3E0',
