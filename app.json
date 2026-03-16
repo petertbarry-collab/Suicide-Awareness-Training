@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "Raven",
-    "slug": "Raven",
+    "slug": "raven",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/app-icon-rcb.png",
@@ -36,7 +36,7 @@
       "expo-router",
       "expo-web-browser"
     ],
-    "scheme": "Raven",
+    "scheme": "raven",
     "experiments": {
       "typedRoutes": true
     },

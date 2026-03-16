@@ -15,14 +15,14 @@ interface TrainingResource {
   cost: string;
   website: string;
   phone?: string;
-  category: 'beginner' | 'advanced' | 'specialized';
+  category: 'beginner';
 }
 
 export default function HomeScreen() {
   console.log('HomeScreen: Rendering suicide awareness training list with app logo');
   
   const [expandedId, setExpandedId] = useState<string | null>(null);
-  const [selectedFilter, setSelectedFilter] = useState<'all' | 'free' | 'online' | 'beginner'>('all');
+  const [selectedFilter, setSelectedFilter] = useState<'all' | 'free' | 'online'>('all');
 
   const trainingResources: TrainingResource[] = [
     {
@@ -36,18 +36,6 @@ export default function HomeScreen() {
       website: 'https://www.hse.ie/eng/services/list/4/mental-health-services/nosp/prevention/training/',
       phone: '01 635 2179',
       category: 'beginner'
-    },
-    {
-      id: '2',
-      title: 'ASIST (Applied Suicide Intervention Skills Training)',
-      provider: 'HSE National Office for Suicide Prevention',
-      description: 'A two-day interactive workshop in suicide first aid. Participants learn to recognize risk and intervene to prevent immediate suicide risk.',
-      duration: '2 days',
-      format: 'In-person',
-      cost: 'Free',
-      website: 'https://www.hse.ie/eng/services/list/4/mental-health-services/nosp/prevention/training/',
-      phone: '01 635 2179',
-      category: 'advanced'
     },
     {
       id: '3',
@@ -74,18 +62,6 @@ export default function HomeScreen() {
       category: 'beginner'
     },
     {
-      id: '5',
-      title: 'Connect Suicide Prevention Training',
-      provider: 'Connect Counselling',
-      description: 'Evidence-based training program focusing on suicide prevention and intervention skills.',
-      duration: 'Half day',
-      format: 'In-person',
-      cost: 'Contact for pricing',
-      website: 'https://www.connectcounselling.ie/',
-      phone: '1800 477 477',
-      category: 'advanced'
-    },
-    {
       id: '6',
       title: 'Suicide Prevention Training',
       provider: 'Console',
@@ -96,18 +72,6 @@ export default function HomeScreen() {
       website: 'https://www.console.ie/training/',
       phone: '1800 201 890',
       category: 'beginner'
-    },
-    {
-      id: '7',
-      title: 'Youth Mental Health First Aid',
-      provider: 'Jigsaw',
-      description: 'Specialized training for those working with young people, focusing on youth mental health challenges.',
-      duration: '14 hours',
-      format: 'In-person',
-      cost: 'Varies',
-      website: 'https://www.jigsaw.ie/training',
-      phone: '01 472 7010',
-      category: 'specialized'
     },
     {
       id: '8',
@@ -127,7 +91,6 @@ export default function HomeScreen() {
     if (selectedFilter === 'all') return true;
     if (selectedFilter === 'free') return resource.cost === 'Free';
     if (selectedFilter === 'online') return resource.format.includes('Online');
-    if (selectedFilter === 'beginner') return resource.category === 'beginner';
     return true;
   });
 
@@ -254,14 +217,6 @@ export default function HomeScreen() {
               >
                 <Text style={[styles.filterChipText, selectedFilter === 'all' && styles.filterChipTextActive]}>
                   All
-                </Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                style={[styles.filterChip, selectedFilter === 'beginner' && styles.filterChipActive]}
-                onPress={() => setSelectedFilter('beginner')}
-              >
-                <Text style={[styles.filterChipText, selectedFilter === 'beginner' && styles.filterChipTextActive]}>
-                  Beginner Friendly
                 </Text>
               </TouchableOpacity>
               <TouchableOpacity
