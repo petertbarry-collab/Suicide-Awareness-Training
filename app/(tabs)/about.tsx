@@ -26,6 +26,10 @@ export default function AboutScreen() {
           <Text style={styles.body}>
             We wanted to do something but rather than set up another organisation we decided to focus on the resources that are already there and raise awareness of those.
           </Text>
+          <View style={styles.paragraphSpacer} />
+          <Text style={styles.body}>
+            Why Raven? Nicky had a tattoo of a Raven on his forearm which he was very proud of. In many cultures the Raven is a symbol of the Watcher or Gatekeeper and is a perfect symbol for what we are hoping to achieve here.
+          </Text>
         </View>
       </Animated.View>
     </SafeAreaView>
@@ -67,5 +71,8 @@ const styles = StyleSheet.create({
     color: colors.text,
     lineHeight: 28,
     marginBottom: 20,
+  },
+  paragraphSpacer: {
+    height: 16,
   },
 });
