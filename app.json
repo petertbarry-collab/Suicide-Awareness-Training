@@ -14,7 +14,7 @@
     },
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.raven.app",
+      "bundleIdentifier": "com.pbarry.raven",
       "infoPlist": {
         "ITSAppUsesNonExemptEncryption": false
       }
