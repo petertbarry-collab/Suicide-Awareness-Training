@@ -146,6 +146,44 @@ export default function HomeScreen() {
               <Text style={styles.introText}>These are suicide alertness raising programmes that prepare participants to know how to help someone with thoughts of suicide. They also help to improve awareness of and sensitivities to self-harm.</Text>
             </View>
 
+            {/* REQUIREMENTS TO ATTEND */}
+            <View style={styles.requirementsCard}>
+              <View style={styles.requirementsHeader}>
+                <IconSymbol
+                  ios_icon_name="checkmark.shield.fill"
+                  android_material_icon_name="verified-user"
+                  size={20}
+                  color={colors.primary}
+                />
+                <Text style={styles.requirementsTitle}>Requirements to Attend</Text>
+              </View>
+              <Text style={styles.requirementsIntro}>
+                The following requirements apply to those considering taking part in these programmes. Participants must be:
+              </Text>
+              <View style={styles.requirementsList}>
+                <View style={styles.requirementItem}>
+                  <View style={styles.bullet} />
+                  <Text style={styles.requirementText}>18 years of age or over</Text>
+                </View>
+                <View style={styles.requirementItem}>
+                  <View style={styles.bullet} />
+                  <Text style={styles.requirementText}>"Ready" to complete training – it is recommended that individuals who are recently bereaved wait 12 months before attending</Text>
+                </View>
+                <View style={styles.requirementItem}>
+                  <View style={styles.bullet} />
+                  <Text style={styles.requirementText}>Open and have the capacity to learn</Text>
+                </View>
+                <View style={styles.requirementItem}>
+                  <View style={styles.bullet} />
+                  <Text style={styles.requirementText}>Aware that the course material is of a sensitive nature, and that the workshops are intensive and interactive, and may involve taking part in teaching and discussion groups</Text>
+                </View>
+                <View style={styles.requirementItem}>
+                  <View style={styles.bullet} />
+                  <Text style={styles.requirementText}>Available to attend for the full duration of the training programme and, in the case of an online self-directed programme, ensure that the programme is fully completed</Text>
+                </View>
+              </View>
+            </View>
+
             {/* CRISIS SUPPORT - IMMEDIATE ACCESS */}
             <View style={styles.emergencyCard}>
               <View style={styles.emergencyHeader}>
@@ -595,6 +633,58 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: '600',
     color: colors.primary,
+  },
+  requirementsCard: {
+    backgroundColor: '#EAF4F8',
+    borderRadius: 12,
+    padding: 16,
+    marginBottom: 16,
+    borderWidth: 1,
+    borderColor: '#B8D9E8',
+    borderLeftWidth: 4,
+    borderLeftColor: colors.primary,
+    boxShadow: '0px 1px 3px rgba(74, 144, 164, 0.08)',
+    elevation: 2,
+  },
+  requirementsHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+    marginBottom: 10,
+  },
+  requirementsTitle: {
+    fontSize: 16,
+    fontWeight: '700',
+    color: colors.text,
+    letterSpacing: -0.2,
+  },
+  requirementsIntro: {
+    fontSize: 14,
+    color: colors.text,
+    lineHeight: 21,
+    marginBottom: 12,
+  },
+  requirementsList: {
+    gap: 10,
+  },
+  requirementItem: {
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    gap: 10,
+  },
+  bullet: {
+    width: 6,
+    height: 6,
+    borderRadius: 3,
+    backgroundColor: colors.primary,
+    marginTop: 7,
+    flexShrink: 0,
+  },
+  requirementText: {
+    flex: 1,
+    fontSize: 14,
+    color: colors.text,
+    lineHeight: 21,
   },
   selfCareCard: {
     backgroundColor: '#E8F5E9',
