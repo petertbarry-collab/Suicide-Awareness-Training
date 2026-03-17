@@ -14,25 +14,19 @@ registerTrainingRoutes(app);
 
 // Seed initial data
 async function seedData() {
-  const existingCount = await app.db
-    .select()
-    .from(schema.trainingRegistrations);
+  app.logger.info({}, 'Clearing and reseeding training registrations');
 
-  if (existingCount.length === 0) {
-    app.logger.info({}, 'Seeding training registrations');
-    const seedDevices = Array.from({ length: 47 }, (_, i) => ({
-      deviceId: `seed-device-${i + 1}`,
-    }));
+  // Delete all existing rows
+  await app.db.delete(schema.trainingRegistrations);
 
-    for (const device of seedDevices) {
-      await app.db
-        .insert(schema.trainingRegistrations)
-        .values(device)
-        .onConflictDoNothing();
-    }
+  // Insert single seed row
+  await app.db
+    .insert(schema.trainingRegistrations)
+    .values({
+      deviceId: 'seed-device-1',
+    });
 
-    app.logger.info({ count: 47 }, 'Seeding completed');
-  }
+  app.logger.info({ count: 1 }, 'Seeding completed');
 }
 
 await seedData();
