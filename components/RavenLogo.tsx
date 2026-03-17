@@ -8,7 +8,7 @@ interface RavenLogoProps {
   color?: string;
 }
 
-export default function RavenLogo({ size = 120, color = '#2C5F7C' }: RavenLogoProps) {
+export default function RavenLogo({ size = 120, color = '#2E7D32' }: RavenLogoProps) {
   console.log('🦅 RavenLogo rendering with size:', size, 'color:', color);
   
   return (

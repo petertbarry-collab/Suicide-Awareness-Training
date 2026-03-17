@@ -133,11 +133,13 @@ export default function HomeScreen() {
         >
           {/* HEADER WITH LOGO */}
           <View style={styles.headerContainer}>
-            <Image
-              source={require('@/assets/images/app-icon-rcb.png')}
-              style={styles.appLogo}
-              resizeMode="contain"
-            />
+            <View style={styles.appLogoCircle}>
+              <Image
+                source={require('@/assets/images/app-icon-rcb.png')}
+                style={styles.appLogo}
+                resizeMode="contain"
+              />
+            </View>
             <Text style={styles.appTitle}>Raven</Text>
             <Text style={styles.appSubtitle}>Suicide Awareness Training Resources</Text>
           </View>
@@ -481,11 +483,19 @@ const styles = StyleSheet.create({
     paddingTop: Platform.OS === 'android' ? 48 : 24,
     marginBottom: 8,
   },
-  appLogo: {
-    width: 80,
-    height: 80,
-    borderRadius: 20,
+  appLogoCircle: {
+    width: 88,
+    height: 88,
+    borderRadius: 44,
+    backgroundColor: '#2E7D32',
+    alignItems: 'center',
+    justifyContent: 'center',
     marginBottom: 12,
+  },
+  appLogo: {
+    width: 72,
+    height: 72,
+    borderRadius: 16,
   },
   appTitle: {
     fontSize: 32,
