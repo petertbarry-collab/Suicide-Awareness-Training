@@ -27,6 +27,12 @@ export default function TabLayout() {
       icon: 'info',
       label: 'About',
     },
+    {
+      name: 'contact',
+      route: '/(tabs)/contact',
+      icon: 'mail',
+      label: 'Contact',
+    },
   ];
 
   // For Android and Web, use Stack navigation with custom floating tab bar
@@ -41,6 +47,7 @@ export default function TabLayout() {
         <Stack.Screen key="home" name="(home)" />
         <Stack.Screen key="support" name="(support)" />
         <Stack.Screen key="about" name="about" />
+        <Stack.Screen key="contact" name="contact" />
       </Stack>
       <FloatingTabBar tabs={tabs} />
     </>

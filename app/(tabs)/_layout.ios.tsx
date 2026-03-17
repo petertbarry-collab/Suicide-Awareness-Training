@@ -20,6 +20,10 @@ export default function TabLayout() {
         <Label>About</Label>
         <Icon sf={{ default: 'info.circle', selected: 'info.circle.fill' }} drawable="info" />
       </NativeTabs.Trigger>
+      <NativeTabs.Trigger name="contact">
+        <Label>Contact</Label>
+        <Icon sf={{ default: 'envelope', selected: 'envelope.fill' }} drawable="mail" />
+      </NativeTabs.Trigger>
     </NativeTabs>
   );
 }
