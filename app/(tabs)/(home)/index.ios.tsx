@@ -5,6 +5,7 @@ import { colors } from "@/styles/commonStyles";
 import React, { useState } from "react";
 import { StyleSheet, View, Text, ScrollView, TouchableOpacity, Linking, Image } from "react-native";
 import { IconSymbol } from "@/components/IconSymbol";
+import TrainingCounterCard from "@/components/TrainingCounterCard";
 
 interface TrainingResource {
   id: number;
@@ -184,6 +185,9 @@ export default function HomeScreen() {
                 <Text style={styles.introText}>
                   These are suicide alertness raising programmes that prepare participants to know how to help someone with thoughts of suicide. They also help to improve awareness of and sensitivities to self-harm.
                 </Text>
+
+                {/* COMMUNITY TRAINING COUNTER */}
+                <TrainingCounterCard />
 
                 {/* FILTER SECTION */}
                 <View style={styles.filterSection}>
