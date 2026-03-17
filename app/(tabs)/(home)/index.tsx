@@ -139,7 +139,7 @@ export default function HomeScreen() {
               resizeMode="contain"
             />
             <Text style={styles.appTitle}>Raven</Text>
-            <Text style={styles.appSubtitle}>Suicide Alertness Community Training Resources</Text>
+            <Text style={styles.appSubtitle}>Community Suicide Alertness Training Resources</Text>
           </View>
 
           {/* SEGMENTED CONTROL */}
