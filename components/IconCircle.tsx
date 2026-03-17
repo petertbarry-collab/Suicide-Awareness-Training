@@ -10,7 +10,7 @@ interface IconCircleProps {
 
 export function IconCircle({
   emoji,
-  backgroundColor = "#2E7D32",
+  backgroundColor = "lightblue",
   size = 48,
   style,
 }: IconCircleProps) {
