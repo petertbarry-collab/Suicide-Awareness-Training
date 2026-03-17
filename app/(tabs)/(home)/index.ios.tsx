@@ -153,7 +153,7 @@ export default function HomeScreen() {
                 style={styles.appLogo}
                 resizeMode="contain"
               />
-              <Text style={styles.appSubtitle}>Suicide Awareness Training Resources</Text>
+              <Text style={styles.appSubtitle}>Suicide Alertness Community Training Resources</Text>
             </View>
 
             {/* SEGMENTED CONTROL */}
