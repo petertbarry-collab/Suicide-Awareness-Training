@@ -19,6 +19,7 @@ const MAILTO = 'mailto:petertbarry@gmail.com';
 export default function ContactScreen() {
   // Staggered entrance animations
   const headerAnim = useRef(new Animated.Value(0)).current;
+  const storyAnim = useRef(new Animated.Value(0)).current;
   const card1Anim = useRef(new Animated.Value(0)).current;
   const buttonAnim = useRef(new Animated.Value(0)).current;
   const card2Anim = useRef(new Animated.Value(0)).current;
@@ -34,11 +35,12 @@ export default function ContactScreen() {
 
     Animated.stagger(80, [
       makeAnim(headerAnim, 0),
+      makeAnim(storyAnim, 0),
       makeAnim(card1Anim, 0),
       makeAnim(buttonAnim, 0),
       makeAnim(card2Anim, 0),
     ]).start();
-  }, [headerAnim, card1Anim, buttonAnim, card2Anim]);
+  }, [headerAnim, storyAnim, card1Anim, buttonAnim, card2Anim]);
 
   const makeAnimatedStyle = (anim: Animated.Value) => ({
     opacity: anim,
@@ -91,6 +93,16 @@ export default function ContactScreen() {
           </View>
           <Text style={styles.heading}>Get in Touch</Text>
           <Text style={styles.subtitle}>We'd love to hear from you.</Text>
+        </Animated.View>
+
+        {/* Story invite */}
+        <Animated.View style={[styles.storyCard, makeAnimatedStyle(storyAnim)]}>
+          <Text style={styles.storyText}>
+            We'd love to hear your story. Whether it was a personal challenge that led you to this training, or a moment where you put it into practice — your experience matters and could inspire others.
+          </Text>
+          <Text style={styles.storySubText}>
+            Drop us a message and tell us what brought you here.
+          </Text>
         </Animated.View>
 
         {/* Email card */}
@@ -217,5 +229,30 @@ const styles = StyleSheet.create({
     fontSize: 15,
     color: colors.textSecondary,
     lineHeight: 23,
+  },
+  storyCard: {
+    backgroundColor: colors.card,
+    borderColor: colors.border,
+    borderWidth: 1,
+    borderRadius: 12,
+    padding: 18,
+    marginBottom: 16,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.06,
+    shadowRadius: 4,
+    elevation: 2,
+  },
+  storyText: {
+    fontSize: 15,
+    color: colors.text,
+    lineHeight: 24,
+    marginBottom: 10,
+  },
+  storySubText: {
+    fontSize: 14,
+    color: colors.textSecondary,
+    lineHeight: 21,
+    fontStyle: 'italic',
   },
 });
