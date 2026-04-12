@@ -13,8 +13,8 @@ import { Stack } from 'expo-router';
 import { Mail } from 'lucide-react-native';
 import { colors } from '@/styles/commonStyles';
 
-const EMAIL = 'petertbarry@gmail.com';
-const MAILTO = 'mailto:petertbarry@gmail.com';
+const EMAIL = 'ravensuicidealertness@gmail.com';
+const MAILTO = 'mailto:ravensuicidealertness@gmail.com';
 
 export default function ContactScreen() {
   // Staggered entrance animations
