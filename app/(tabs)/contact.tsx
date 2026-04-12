@@ -129,12 +129,7 @@ export default function ContactScreen() {
           </Animated.View>
         </Animated.View>
 
-        {/* Message card */}
-        <Animated.View style={[styles.card, makeAnimatedStyle(card2Anim)]}>
-          <Text style={styles.messageText}>
-            Have a question about the app, training resources, or want to get involved? Reach out and we'll get back to you as soon as we can.
-          </Text>
-        </Animated.View>
+
       </ScrollView>
     </>
   );
