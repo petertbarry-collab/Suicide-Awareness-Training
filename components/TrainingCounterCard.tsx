@@ -10,7 +10,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { colors } from '@/styles/commonStyles';
 import { getDeviceId } from '@/utils/deviceId';
 
-const API_BASE = 'https://ge9b88sf4pvcjhqzxh2swdt58rwvyfpk.app.specular.dev';
+const API_BASE = 'https://jb8zdvwqzjtcxs7pqpdyxvdx64f279e4.app.specular.dev';
 const REGISTERED_KEY = 'raven_training_registered';
 
 function SkeletonPulse({ width, height }: { width: number | string; height: number }) {
